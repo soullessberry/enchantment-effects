@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "enchantment-effects",
+	"version": "${version}",
+	"name": "Enchantment Effects",
+	"description": "Adds client-side effects for enchantments!",
+	"authors": [
+		"soullessberry"
+	],
+	"contact": {
+		"sources": "https://github.com/soullessberry/enchantment-effects"
+	},
+	"license": "MIT",
+	"icon": "assets/enchantment-effects/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+			"soullessberry.enchantmenteffects.EnchantmentEffects"
+		],
+		"client": [
+			"soullessberry.enchantmenteffects.EnchantmentEffectsClient"
+		]
+	},
+	"mixins": [
+		"enchantment-effects.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": ">=26.1",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
