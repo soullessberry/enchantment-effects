@@ -6,7 +6,7 @@ Enchantment Effects is a small client-side mod that makes enchantments feel more
 
 ## Smite
 The smite enchantment now summons a holy beam of light! Beam size scales with smite level.
-Check out the gallery for pictures :)
+
 
 ## Planned Enchantments:
 - Smite (Done)
