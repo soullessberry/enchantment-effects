@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +17,10 @@ public class ClientPacketListenerMixin {
     @WrapOperation(method="handleDamageEvent", at=@At(value="INVOKE", target="Lnet/minecraft/world/entity/Entity;handleDamageEvent(Lnet/minecraft/world/damagesource/DamageSource;)V"))
     public void satisfyingsmite$handleDamageEvent(Entity target, DamageSource source, Operation<Void> original) {
 
-        if (target != null && source.getEntity() instanceof Player player && source.isDirect()) {
+        if (
+                target != null && source.getEntity() instanceof Player player && source.isDirect()
+                && (source.is(DamageTypes.PLAYER_ATTACK) || source.is(DamageTypes.SPEAR) || source.is(DamageTypes.MACE_SMASH))
+        ) {
             EffectHandler.applyEffects(player, target);
         }
 
