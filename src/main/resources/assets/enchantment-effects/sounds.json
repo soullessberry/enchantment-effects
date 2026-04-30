@@ -2,5 +2,9 @@
   "smite": {
     "subtitle": "sound.enchantment-effects.smite",
     "sounds": ["enchantment-effects:smite"]
+  },
+  "slash": {
+    "subtitle": "sound.enchantment-effects.slash",
+    "sounds": ["enchantment-effects:slash"]
   }
 }
