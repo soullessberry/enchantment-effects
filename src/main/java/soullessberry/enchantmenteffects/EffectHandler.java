@@ -75,11 +75,12 @@ public class EffectHandler {
         playSoundEffect(
                 EnchantmentEffects.SMITE_SOUND,
                 target.position(),
-                (0.7F + (0.1F * smiteLevel)),
+                (0.5F + (0.1F * smiteLevel)),
                 (random.triangle(1.15F - (0.05F * smiteLevel), 0.1F))
         );
-        spawnBeamParticles(target.level(), target.position(), (float) smiteLevel / 3);
-        spawnBeamImpactParticle(target.level(), target.position(), (float) smiteLevel / 3);
+        float scale = 0.15f * smiteLevel + 0.25f;
+        spawnBeamParticles(target.level(), target.position(), scale);
+        spawnBeamImpactParticle(target.level(), target.position(), scale);
     }
 
     private static void playSoundEffect(SoundEvent sound, Vec3 pos, float volume, float pitch) {

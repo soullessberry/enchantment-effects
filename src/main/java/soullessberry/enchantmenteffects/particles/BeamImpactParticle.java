@@ -18,7 +18,7 @@ public class BeamImpactParticle extends AbstractScalableParticle {
 
     public <T extends AbstractScalableParticleEffect> BeamImpactParticle(ClientLevel level, double x, double y, double z, double xa, double ya, double za, T params, SpriteSet sprites) {
         super(level, x, y, z, xa, ya, za, params, sprites);
-        this.lifetime = 10;
+        this.lifetime = 7;
     }
 
     @Override

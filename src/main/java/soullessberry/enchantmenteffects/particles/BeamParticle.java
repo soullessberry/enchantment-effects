@@ -17,7 +17,7 @@ public class BeamParticle extends AbstractScalableParticle {
             SpriteSet sprites
     ) {
         super(level, x, y, z, xa, ya, za, params, sprites);
-        this.lifetime = 10;
+        this.lifetime = 7;
     }
 
     @Override
