@@ -1,10 +1,14 @@
 {
-  "smite": {
-    "subtitle": "sound.enchantment-effects.smite",
-    "sounds": ["enchantment-effects:smite"]
+  "bane": {
+    "subtitle": "sound.enchantment-effects.bane",
+    "sounds": ["enchantment-effects:bane"]
   },
   "slash": {
     "subtitle": "sound.enchantment-effects.slash",
     "sounds": ["enchantment-effects:slash"]
+  },
+  "smite": {
+    "subtitle": "sound.enchantment-effects.smite",
+    "sounds": ["enchantment-effects:smite"]
   }
 }

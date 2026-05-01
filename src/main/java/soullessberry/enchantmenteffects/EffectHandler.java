@@ -19,6 +19,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import soullessberry.enchantmenteffects.particles.BaneParticleEffect;
 import soullessberry.enchantmenteffects.particles.BeamImpactParticleEffect;
 import soullessberry.enchantmenteffects.particles.BeamParticleEffect;
 import soullessberry.enchantmenteffects.particles.SlashParticleEffect;
@@ -30,8 +31,16 @@ public class EffectHandler {
     private static final int BEAM_HEIGHT = 10;
 
     public static void applyEffects(Player player, Entity target) {
+        attemptBaneOfArthropods(player, target);
         attemptSharpness(player, target);
         attemptSmite(player, target);
+    }
+
+    private static void attemptBaneOfArthropods(Player player, Entity target) {
+        int baneLevel = getEnchantmentLevel(player.getWeaponItem(), Enchantments.BANE_OF_ARTHROPODS);
+        if (target.is(EntityTypeTags.ARTHROPOD) && baneLevel > 0) {
+            applyBaneEffect(target, baneLevel);
+        }
     }
 
     private static void attemptSharpness(Player player, Entity target) {
@@ -56,6 +65,19 @@ public class EffectHandler {
         }
         Holder<Enchantment> enchantmentHolder = level.registryAccess().getOrThrow(enchantment);
         return EnchantmentHelper.getItemEnchantmentLevel(enchantmentHolder,item);
+    }
+
+    private static void applyBaneEffect(Entity target, int baneLevel) {
+        playSoundEffect(
+                EnchantmentEffects.BANE_SOUND,
+                target.position(),
+                (0.7F + (0.1F * baneLevel)),
+                (random.triangle(1.15F - (0.05F * baneLevel), 0.1F))
+        );
+
+        float offset = target.getDimensions(target.getPose()).height() / 2 + 0.25f;
+        float scale = 0.15f * baneLevel + 0.25f;
+        spawnBaneParticle(target.level(), target.position().add(0, offset, 0), scale);
     }
 
     private static void applySharpnessEffect(Entity target, int sharpnessLevel) {
@@ -92,6 +114,10 @@ public class EffectHandler {
                 SoundInstance.createUnseededRandom(),
                 BlockPos.containing(pos)
         ));
+    }
+
+    private static void spawnBaneParticle(Level level, Vec3 pos, float scale) {
+        level.addParticle(new BaneParticleEffect(scale), true, true, pos.x, pos.y, pos.z, 0, 0.1F, 0);
     }
 
     private static void spawnBeamParticles(Level level, Vec3 pos, float scale) {
