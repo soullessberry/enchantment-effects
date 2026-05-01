@@ -10,14 +10,16 @@ The sharpness enchantment will now do a magic slash on the target! Slash size sc
 ## Smite
 The smite enchantment now summons a holy beam of light! Beam size scales with smite level.
 
+## Bane of Arthropods
+The bane of arthropods enchantment now banishes the bug into nonexistence! Banish size scales with bane of arthropods level.
+
 
 ## Planned Enchantments:
 - Smite (Done)
 - Sharpness (Done)
-- Bane of Arthropods
+- Bane of Arthropods (Done)
 - Fire Aspect
 - Knockback
 - Thorns
 - Possibly Bow Enchantments
-- Maybe more?
 - Enchantment combinations (e.g. sharpness + fire aspect)
