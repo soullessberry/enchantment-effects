@@ -41,7 +41,7 @@ public class EffectHandler {
 
     private static void attemptBaneOfArthropods(Player player, Entity target) {
         int baneLevel = getEnchantmentLevel(player.getWeaponItem(), Enchantments.BANE_OF_ARTHROPODS);
-        if (target.is(EntityTypeTags.ARTHROPOD) && baneLevel > 0) {
+        if (target.is(EntityTypeTags.SENSITIVE_TO_BANE_OF_ARTHROPODS) && baneLevel > 0) {
             applyBaneEffect(target, baneLevel);
         }
     }
@@ -62,7 +62,7 @@ public class EffectHandler {
 
     private static void attemptSmite(Player player, Entity target) {
         int smiteLevel = getEnchantmentLevel(player.getWeaponItem(), Enchantments.SMITE);
-        if (target.is(EntityTypeTags.UNDEAD) && smiteLevel > 0) {
+        if (target.is(EntityTypeTags.SENSITIVE_TO_SMITE) && smiteLevel > 0) {
             applySmiteEffect(target, smiteLevel);
         }
     }
