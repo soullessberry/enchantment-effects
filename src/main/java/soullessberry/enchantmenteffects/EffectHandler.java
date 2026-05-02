@@ -30,7 +30,6 @@ import static soullessberry.enchantmenteffects.EnchantmentEffects.LOGGER;
 
 public class EffectHandler {
     private static final RandomSource random = RandomSource.create();
-    private static final int BEAM_HEIGHT = 10;
 
     public static void applyEffects(Player player, Entity target) {
         attemptBaneOfArthropods(player, target);
@@ -142,10 +141,11 @@ public class EffectHandler {
     }
 
     private static void spawnBeamParticles(Level level, Vec3 pos, float scale) {
+        final int HEIGHT = 10;
         float step = scale * 2;
         double base = pos.y + scale;
 
-        int num_particles = Mth.ceil(BEAM_HEIGHT / scale * 2);
+        int num_particles = Mth.ceil(HEIGHT / scale * 2);
 
         for (int i=0; i < num_particles; ++i) {
             level.addParticle(new BeamParticleEffect(scale), true, true, pos.x, base + (i * step), pos.z, 0, 0, 0);
