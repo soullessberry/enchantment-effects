@@ -137,7 +137,7 @@ public class EffectHandler {
     }
 
     private static void spawnBaneParticle(Level level, Vec3 pos, float scale) {
-        level.addParticle(new BaneParticleEffect(scale), true, true, pos.x, pos.y, pos.z, 0, 0.1F, 0);
+        level.addParticle(new BaneParticleEffect(scale), true, true, pos.x, pos.y, pos.z, 0, 0, 0);
     }
 
     private static void spawnBeamParticles(Level level, Vec3 pos, float scale) {
