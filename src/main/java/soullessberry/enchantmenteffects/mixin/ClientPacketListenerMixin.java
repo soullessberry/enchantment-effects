@@ -15,7 +15,7 @@ import soullessberry.enchantmenteffects.EffectHandler;
 public class ClientPacketListenerMixin {
 
     @WrapOperation(method="handleDamageEvent", at=@At(value="INVOKE", target="Lnet/minecraft/world/entity/Entity;handleDamageEvent(Lnet/minecraft/world/damagesource/DamageSource;)V"))
-    public void satisfyingsmite$handleDamageEvent(Entity target, DamageSource source, Operation<Void> original) {
+    public void enchantmenteffects$handleDamageEvent(Entity target, DamageSource source, Operation<Void> original) {
 
         if (
                 target != null && source.getEntity() instanceof Player player && source.isDirect()
