@@ -13,12 +13,14 @@ The smite enchantment now summons a holy beam of light! Beam size scales with sm
 ## Bane of Arthropods
 The bane of arthropods enchantment now banishes the bug into nonexistence! Banish size scales with bane of arthropods level.
 
+## Fire Aspect
+The fire aspect enchantment now ignites your target with a ring of fire! Number of rings increases with fire aspect level.
 
 ## Planned Enchantments:
 - Smite (Done)
 - Sharpness (Done)
 - Bane of Arthropods (Done)
-- Fire Aspect
+- Fire Aspect (Done)
 - Knockback
 - Thorns
 - Possibly Bow Enchantments
