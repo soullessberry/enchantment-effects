@@ -34,6 +34,7 @@ public class EffectHandler {
     public static void applyEffects(Player player, Entity target) {
         attemptBaneOfArthropods(player, target);
         attemptFireAspect(player, target);
+        attemptKnockback(player, target);
         attemptSharpness(player, target);
         attemptSmite(player, target);
     }
@@ -49,6 +50,13 @@ public class EffectHandler {
         int fireLevel = getEnchantmentLevel(player.getWeaponItem(), Enchantments.FIRE_ASPECT);
         if (!target.fireImmune() && fireLevel > 0) {
             applyFireEffect(target, Math.min(fireLevel, 2));
+        }
+    }
+
+    private static void attemptKnockback(Player player, Entity target) {
+        int knockbackLevel = getEnchantmentLevel(player.getWeaponItem(), Enchantments.KNOCKBACK);
+        if (knockbackLevel > 0) {
+            applyKnockbackEffect(target, Math.min(knockbackLevel, 2));
         }
     }
 
@@ -98,6 +106,17 @@ public class EffectHandler {
         );
         float height = target.getDimensions(target.getPose()).height();
         spawnFireParticles(target.level(), target.position(), fireLevel, height);
+    }
+
+    private static void applyKnockbackEffect(Entity target, int knockbackLevel) {
+        playSoundEffect(
+                SoundEvents.WIND_CHARGE_BURST.value(),
+                target.position(),
+                (0.4F + (0.2F * knockbackLevel)),
+                (random.triangle(0.8F - (0.1F * knockbackLevel), 0.1F))
+        );
+        float height = target.getDimensions(target.getPose()).height();
+        spawnKnockbackParticles(target.level(), target.position(), knockbackLevel, height);
     }
 
     private static void applySharpnessEffect(Entity target, int sharpnessLevel) {
@@ -174,6 +193,13 @@ public class EffectHandler {
             double zVel = Math.cos(radians) * VEL;
             double yVel = random.triangle(0, 0.01);
             level.addParticle(ParticleTypes.FLAME, true, true, pos.x, pos.y, pos.z, xVel, yVel, zVel);
+        }
+    }
+
+    private static void spawnKnockbackParticles(Level level, Vec3 pos, int count, float height) {
+        final double STEP = height / (count+1);
+        for (int i=1; i < count+1; ++i) {
+            level.addParticle(ParticleTypes.GUST, true, true, pos.x, pos.y+(i*STEP), pos.z, 0, 0, 0);
         }
     }
 
