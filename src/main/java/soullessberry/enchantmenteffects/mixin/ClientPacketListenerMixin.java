@@ -2,6 +2,7 @@ package soullessberry.enchantmenteffects.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -20,8 +21,9 @@ public class ClientPacketListenerMixin {
         if (
                 target != null && source.getEntity() instanceof Player player && source.isDirect()
                 && (source.is(DamageTypes.PLAYER_ATTACK) || source.is(DamageTypes.SPEAR) || source.is(DamageTypes.MACE_SMASH))
+                && (player != Minecraft.getInstance().player || source.is(DamageTypes.SPEAR))
         ) {
-            EffectHandler.applyEffects(player, target);
+            EffectHandler.applyEffects(player.getWeaponItem(), target);
         }
 
         original.call(target, source);

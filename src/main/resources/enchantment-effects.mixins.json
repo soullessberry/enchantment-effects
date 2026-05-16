@@ -4,7 +4,8 @@
 	"package": "soullessberry.enchantmenteffects.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
-		"ClientPacketListenerMixin"
+		"ClientPacketListenerMixin",
+		"PlayerMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
