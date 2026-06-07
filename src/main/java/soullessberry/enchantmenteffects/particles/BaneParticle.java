@@ -7,7 +7,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.renderer.state.level.QuadParticleRenderState;
+import net.minecraft.client.renderer.state.QuadParticleRenderState;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
@@ -38,7 +38,7 @@ public class BaneParticle extends AbstractScalableParticle {
 
     @Override
     protected void extractRotatedQuad(
-            final @NonNull QuadParticleRenderState particleTypeRenderState, final Camera camera, final @NonNull Quaternionf rotation, final float partialTickTime
+            @NonNull QuadParticleRenderState quadParticleRenderState, Camera camera, @NonNull Quaternionf quaternionf, float f
     ) {
         Vec3 camPos = camera.position();
         Vec3 oldPos = new Vec3(this.xo, this.yo, this.zo);
@@ -53,10 +53,10 @@ public class BaneParticle extends AbstractScalableParticle {
         double newY = this.yo + newDir.y();
         double newZ = this.zo + newDir.z();
 
-        float x = (float)(Mth.lerp(partialTickTime, oldX, newX) - camPos.x());
-        float y = (float)(Mth.lerp(partialTickTime, oldY, newY) - camPos.y());
-        float z = (float)(Mth.lerp(partialTickTime, oldZ, newZ) - camPos.z());
-        this.extractRotatedQuad(particleTypeRenderState, rotation, x, y, z, partialTickTime);
+        float x = (float)(Mth.lerp(f, oldX, newX) - camPos.x());
+        float y = (float)(Mth.lerp(f, oldY, newY) - camPos.y());
+        float z = (float)(Mth.lerp(f, oldZ, newZ) - camPos.z());
+        this.extractRotatedQuad(quadParticleRenderState, quaternionf, x, y, z, f);
     }
 
     @Environment(EnvType.CLIENT)

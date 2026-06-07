@@ -14,7 +14,7 @@ import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.item.ItemInstance;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -30,7 +30,7 @@ import static soullessberry.enchantmenteffects.EnchantmentEffects.LOGGER;
 public class EffectHandler {
     private static final RandomSource random = RandomSource.create();
 
-    public static void applyEffects(ItemInstance weapon, Entity target) {
+    public static void applyEffects(ItemStack weapon, Entity target) {
         attemptBaneOfArthropods(weapon, target);
         attemptFireAspect(weapon, target);
         attemptKnockback(weapon, target);
@@ -38,42 +38,42 @@ public class EffectHandler {
         attemptSmite(weapon, target);
     }
 
-    private static void attemptBaneOfArthropods(ItemInstance weapon, Entity target) {
+    private static void attemptBaneOfArthropods(ItemStack weapon, Entity target) {
         int baneLevel = getEnchantmentLevel(weapon, Enchantments.BANE_OF_ARTHROPODS);
-        if (target.is(EntityTypeTags.SENSITIVE_TO_BANE_OF_ARTHROPODS) && baneLevel > 0) {
+        if (target.getType().is(EntityTypeTags.SENSITIVE_TO_BANE_OF_ARTHROPODS) && baneLevel > 0) {
             applyBaneEffect(target, Math.min(baneLevel, 5));
         }
     }
 
-    private static void attemptFireAspect(ItemInstance weapon, Entity target) {
+    private static void attemptFireAspect(ItemStack weapon, Entity target) {
         int fireLevel = getEnchantmentLevel(weapon, Enchantments.FIRE_ASPECT);
         if (!target.fireImmune() && fireLevel > 0) {
             applyFireEffect(target, Math.min(fireLevel, 2));
         }
     }
 
-    private static void attemptKnockback(ItemInstance weapon, Entity target) {
+    private static void attemptKnockback(ItemStack weapon, Entity target) {
         int knockbackLevel = getEnchantmentLevel(weapon, Enchantments.KNOCKBACK);
         if (knockbackLevel > 0) {
             applyKnockbackEffect(target, Math.min(knockbackLevel, 2));
         }
     }
 
-    private static void attemptSharpness(ItemInstance weapon, Entity target) {
+    private static void attemptSharpness(ItemStack weapon, Entity target) {
         int sharpnessLevel = getEnchantmentLevel(weapon, Enchantments.SHARPNESS);
         if (sharpnessLevel > 0) {
             applySharpnessEffect(target, Math.min(sharpnessLevel, 5));
         }
     }
 
-    private static void attemptSmite(ItemInstance weapon, Entity target) {
+    private static void attemptSmite(ItemStack weapon, Entity target) {
         int smiteLevel = getEnchantmentLevel(weapon, Enchantments.SMITE);
-        if (target.is(EntityTypeTags.SENSITIVE_TO_SMITE) && smiteLevel > 0) {
+        if (target.getType().is(EntityTypeTags.SENSITIVE_TO_SMITE) && smiteLevel > 0) {
             applySmiteEffect(target, Math.min(smiteLevel, 5));
         }
     }
 
-    private static int getEnchantmentLevel(ItemInstance item, ResourceKey<Enchantment> enchantment) {
+    private static int getEnchantmentLevel(ItemStack item, ResourceKey<Enchantment> enchantment) {
         Level level = Minecraft.getInstance().level;
         if (level == null) {
             LOGGER.warn("getEnchantmentLevel was called on a null Level instance");

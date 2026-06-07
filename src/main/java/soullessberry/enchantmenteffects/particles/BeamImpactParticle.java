@@ -7,7 +7,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.renderer.state.level.QuadParticleRenderState;
+import net.minecraft.client.renderer.state.QuadParticleRenderState;
 import net.minecraft.util.RandomSource;
 import org.joml.Quaternionf;
 import org.jspecify.annotations.NonNull;
@@ -22,12 +22,14 @@ public class BeamImpactParticle extends AbstractScalableParticle {
     }
 
     @Override
-    public void extract(final @NonNull QuadParticleRenderState particleTypeRenderState, final @NonNull Camera camera, final float partialTickTime) {
+    public void extract(
+            @NonNull QuadParticleRenderState quadParticleRenderState, @NonNull Camera camera, float f
+    ) {
         Quaternionf rotation = new Quaternionf();
         rotation.rotationX(NINETY_DEGREES);
-        this.extractRotatedQuad(particleTypeRenderState, camera, rotation, partialTickTime);
+        this.extractRotatedQuad(quadParticleRenderState, camera, rotation, f);
         rotation.rotationX(NINETY_DEGREES * 3);
-        this.extractRotatedQuad(particleTypeRenderState, camera, rotation, partialTickTime);
+        this.extractRotatedQuad(quadParticleRenderState, camera, rotation, f);
     }
 
     @Environment(EnvType.CLIENT)
