@@ -15,9 +15,9 @@ public class EnchantmentEffects implements ModInitializer {
 	public static final String MOD_ID = "enchantment-effects";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	public static final SoundEvent BANE_SOUND = registerSound(id("bane"));
-	public static final SoundEvent SLASH_SOUND = registerSound(id("slash"));
-	public static final SoundEvent SMITE_SOUND = registerSound(id("smite"));
+	public static final SoundEvent BANE_SOUND = registerSound("bane");
+	public static final SoundEvent SLASH_SOUND = registerSound("slash");
+	public static final SoundEvent SMITE_SOUND = registerSound("smite");
 
 	public static ParticleType<ScalableParticleOptions> BANE_PARTICLE = registerScalableParticle("bane");
 	public static ParticleType<ScalableParticleOptions> BEAM_PARTICLE = registerScalableParticle("beam");
@@ -37,7 +37,8 @@ public class EnchantmentEffects implements ModInitializer {
 		);
 	}
 
-	public static SoundEvent registerSound(Identifier id) {
+	private static SoundEvent registerSound(String name) {
+		Identifier id = id(name);
 		return Registry.register(BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(id));
 	}
 
