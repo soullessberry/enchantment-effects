@@ -20,10 +20,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import soullessberry.enchantmenteffects.particles.BaneParticleEffect;
-import soullessberry.enchantmenteffects.particles.BeamImpactParticleEffect;
-import soullessberry.enchantmenteffects.particles.BeamParticleEffect;
-import soullessberry.enchantmenteffects.particles.SlashParticleEffect;
+import soullessberry.enchantmenteffects.particles.ScalableParticleOptions;
 
 import static soullessberry.enchantmenteffects.EnchantmentEffects.LOGGER;
 
@@ -155,7 +152,7 @@ public class EffectHandler {
     }
 
     private static void spawnBaneParticle(Level level, Vec3 pos, float scale) {
-        level.addParticle(new BaneParticleEffect(scale), true, true, pos.x, pos.y, pos.z, 0, 0, 0);
+        level.addParticle(new ScalableParticleOptions(EnchantmentEffects.BANE_PARTICLE, scale), true, true, pos.x, pos.y, pos.z, 0, 0, 0);
     }
 
     private static void spawnBeamParticles(Level level, Vec3 pos, float scale) {
@@ -166,12 +163,12 @@ public class EffectHandler {
         int num_particles = Mth.ceil(HEIGHT / scale * 2);
 
         for (int i=0; i < num_particles; ++i) {
-            level.addParticle(new BeamParticleEffect(scale), true, true, pos.x, base + (i * step), pos.z, 0, 0, 0);
+            level.addParticle(new ScalableParticleOptions(EnchantmentEffects.BEAM_PARTICLE, scale), true, true, pos.x, base + (i * step), pos.z, 0, 0, 0);
         }
     }
 
     private static void spawnBeamImpactParticle(Level level, Vec3 pos, float scale) {
-        level.addParticle(new BeamImpactParticleEffect(scale), true, true, pos.x, pos.y + 0.01, pos.z, 0, 0, 0);
+        level.addParticle(new ScalableParticleOptions(EnchantmentEffects.BEAM_IMPACT_PARTICLE, scale), true, true, pos.x, pos.y + 0.01, pos.z, 0, 0, 0);
     }
 
     private static void spawnFireParticles(Level level, Vec3 pos, int count, float height) {
@@ -203,6 +200,6 @@ public class EffectHandler {
     }
 
     private static void spawnSlashParticle(Level level, Vec3 pos, float scale) {
-        level.addParticle(new SlashParticleEffect(scale), true, true, pos.x, pos.y, pos.z, 0, 0, 0);
+        level.addParticle(new ScalableParticleOptions(EnchantmentEffects.SLASH_PARTICLE, scale), true, true, pos.x, pos.y, pos.z, 0, 0, 0);
     }
 }

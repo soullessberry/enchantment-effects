@@ -19,7 +19,7 @@ public class BaneParticle extends AbstractScalableParticle {
 
     private final float baseScale;
 
-    public <T extends AbstractScalableParticleEffect> BaneParticle(
+    public <T extends ScalableParticleOptions> BaneParticle(
             ClientLevel level,
             double x, double y, double z,
             double xa, double ya, double za,
@@ -60,9 +60,9 @@ public class BaneParticle extends AbstractScalableParticle {
     }
 
     @Environment(EnvType.CLIENT)
-    public record Provider(SpriteSet sprites) implements ParticleProvider<BaneParticleEffect> {
+    public record Provider(SpriteSet sprites) implements ParticleProvider<ScalableParticleOptions> {
         @Override
-        public Particle createParticle(@NonNull BaneParticleEffect options, @NonNull ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux, @NonNull RandomSource random) {
+        public Particle createParticle(@NonNull ScalableParticleOptions options, @NonNull ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux, @NonNull RandomSource random) {
             return new BaneParticle(level, x, y, z, xAux, yAux, zAux, options, this.sprites);
         }
     }

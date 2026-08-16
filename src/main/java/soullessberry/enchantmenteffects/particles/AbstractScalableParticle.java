@@ -6,7 +6,7 @@ import net.minecraft.client.particle.SpriteSet;
 import org.jspecify.annotations.NonNull;
 
 public class AbstractScalableParticle extends SimpleAnimatedParticle {
-    public <T extends AbstractScalableParticleEffect> AbstractScalableParticle(
+    public <T extends ScalableParticleOptions> AbstractScalableParticle(
             ClientLevel level,
             double x, double y, double z,
             double xa, double ya, double za,

@@ -8,7 +8,6 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.state.level.QuadParticleRenderState;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import org.joml.Quaternionf;
 import org.jspecify.annotations.NonNull;
@@ -20,7 +19,7 @@ public class SlashParticle extends AbstractScalableParticle {
 
     private final float angle;
 
-    public <T extends AbstractScalableParticleEffect> SlashParticle(
+    public <T extends ScalableParticleOptions> SlashParticle(
             ClientLevel level,
             double x, double y, double z,
             double xa, double ya, double za,
@@ -40,9 +39,9 @@ public class SlashParticle extends AbstractScalableParticle {
     }
 
     @Environment(EnvType.CLIENT)
-    public record Provider(SpriteSet sprites) implements ParticleProvider<SlashParticleEffect> {
+    public record Provider(SpriteSet sprites) implements ParticleProvider<ScalableParticleOptions> {
         @Override
-        public Particle createParticle(@NonNull SlashParticleEffect options, @NonNull ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux, @NonNull RandomSource random) {
+        public Particle createParticle(@NonNull ScalableParticleOptions options, @NonNull ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux, @NonNull RandomSource random) {
             return new SlashParticle(level, x, y, z, xAux, yAux, zAux, options, this.sprites);
         }
     }
