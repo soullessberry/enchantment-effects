@@ -7,7 +7,7 @@ import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import soullessberry.enchantmenteffects.EffectHandler;
@@ -19,11 +19,11 @@ public class ClientPacketListenerMixin {
     public void enchantmenteffects$handleDamageEvent(Entity target, DamageSource source, Operation<Void> original) {
 
         if (
-                target != null && source.getEntity() instanceof Player player && source.isDirect()
-                && (source.is(DamageTypes.PLAYER_ATTACK) || source.is(DamageTypes.SPEAR) || source.is(DamageTypes.MACE_SMASH))
-                && (player != Minecraft.getInstance().player || source.is(DamageTypes.SPEAR))
+                target != null && source.getEntity() instanceof LivingEntity attacker && source.isDirect()
+                && (source.is(DamageTypes.PLAYER_ATTACK) || source.is(DamageTypes.MOB_ATTACK) || source.is(DamageTypes.MOB_ATTACK_NO_AGGRO) || source.is(DamageTypes.SPEAR) || source.is(DamageTypes.MACE_SMASH))
+                && (attacker != Minecraft.getInstance().player || source.is(DamageTypes.SPEAR))
         ) {
-            EffectHandler.applyWeaponEffects(player.getWeaponItem(), target);
+            EffectHandler.applyWeaponEffects(attacker.getWeaponItem(), target);
         }
 
         original.call(target, source);
