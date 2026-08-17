@@ -16,7 +16,7 @@ public abstract class PlayerMixin {
     private void enchantmenteffects$attack(Entity entity, CallbackInfo ci) {
         Player player = (Player) (Object) this;
         if (player.level().isClientSide() && entity instanceof LivingEntity livingEntity && !livingEntity.isDeadOrDying()) {
-            EffectHandler.applyEffects(player.getWeaponItem(), entity);
+            EffectHandler.applyWeaponEffects(player.getWeaponItem(), entity);
         }
     }
 }

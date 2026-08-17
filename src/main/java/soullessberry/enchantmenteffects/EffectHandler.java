@@ -27,7 +27,7 @@ import static soullessberry.enchantmenteffects.EnchantmentEffects.LOGGER;
 public class EffectHandler {
     private static final RandomSource random = RandomSource.create();
 
-    public static void applyEffects(ItemInstance weapon, Entity target) {
+    public static void applyWeaponEffects(ItemInstance weapon, Entity target) {
         attemptBaneOfArthropods(weapon, target);
         attemptFireAspect(weapon, target);
         attemptKnockback(weapon, target);

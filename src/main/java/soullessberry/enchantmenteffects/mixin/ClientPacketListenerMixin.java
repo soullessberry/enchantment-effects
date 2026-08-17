@@ -23,7 +23,7 @@ public class ClientPacketListenerMixin {
                 && (source.is(DamageTypes.PLAYER_ATTACK) || source.is(DamageTypes.SPEAR) || source.is(DamageTypes.MACE_SMASH))
                 && (player != Minecraft.getInstance().player || source.is(DamageTypes.SPEAR))
         ) {
-            EffectHandler.applyEffects(player.getWeaponItem(), target);
+            EffectHandler.applyWeaponEffects(player.getWeaponItem(), target);
         }
 
         original.call(target, source);
