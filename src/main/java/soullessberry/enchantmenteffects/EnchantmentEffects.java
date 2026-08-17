@@ -23,6 +23,7 @@ public class EnchantmentEffects implements ModInitializer {
 	public static ParticleType<ScalableParticleOptions> BEAM_PARTICLE = registerScalableParticle("beam");
 	public static ParticleType<ScalableParticleOptions> BEAM_IMPACT_PARTICLE = registerScalableParticle("beam_impact");
 	public static ParticleType<ScalableParticleOptions> SLASH_PARTICLE = registerScalableParticle("slash");
+	public static ParticleType<ScalableParticleOptions> THORNS_PARTICLE = registerScalableParticle("thorns");
 
 	@Override
 	public void onInitialize() {
