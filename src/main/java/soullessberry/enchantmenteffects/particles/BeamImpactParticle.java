@@ -16,7 +16,13 @@ public class BeamImpactParticle extends AbstractScalableParticle {
 
     private static final float NINETY_DEGREES = (float) Math.toRadians(90f);
 
-    public <T extends ScalableParticleOptions> BeamImpactParticle(ClientLevel level, double x, double y, double z, double xa, double ya, double za, T params, SpriteSet sprites) {
+    public <T extends ScalableParticleOptions> BeamImpactParticle(
+            ClientLevel level,
+            double x, double y, double z,
+            double xa, double ya, double za,
+            T params,
+            SpriteSet sprites
+    ) {
         super(level, x, y, z, xa, ya, za, params, sprites);
         this.lifetime = 7;
     }
@@ -33,7 +39,13 @@ public class BeamImpactParticle extends AbstractScalableParticle {
     @Environment(EnvType.CLIENT)
     public record Provider(SpriteSet sprites) implements ParticleProvider<ScalableParticleOptions> {
         @Override
-        public Particle createParticle(@NonNull ScalableParticleOptions options, @NonNull ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux, @NonNull RandomSource random) {
+        public Particle createParticle(
+                @NonNull ScalableParticleOptions options,
+                @NonNull ClientLevel level,
+                double x, double y, double z,
+                double xAux, double yAux, double zAux,
+                @NonNull RandomSource random
+        ) {
             return new BeamImpactParticle(level, x, y, z, xAux, yAux, zAux, options, this.sprites);
         }
     }
