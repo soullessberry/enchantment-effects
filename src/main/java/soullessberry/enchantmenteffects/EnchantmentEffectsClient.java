@@ -14,6 +14,7 @@ public class EnchantmentEffectsClient implements ClientModInitializer {
         registerParticle(EnchantmentEffects.BEAM_IMPACT_PARTICLE, BeamImpactParticle.Provider::new);
         registerParticle(EnchantmentEffects.SLASH_PARTICLE, SlashParticle.Provider::new);
         registerParticle(EnchantmentEffects.THORNS_PARTICLE, ThornsParticle.Provider::new);
+        registerParticle(EnchantmentEffects.THORN_RING_PARTICLE, ThornRingParticle.Provider::new);
     }
 
     private static <T extends ParticleOptions> void registerParticle(
