@@ -31,6 +31,7 @@ public class ScalableParticleOptions implements ParticleOptions {
         return this.type;
     }
 
+    @Override
     public float getScale() {
         return this.scale;
     }
