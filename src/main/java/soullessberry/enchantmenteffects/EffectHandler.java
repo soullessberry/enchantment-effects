@@ -20,7 +20,9 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.jspecify.annotations.Nullable;
 import soullessberry.enchantmenteffects.particles.ScalableParticleOptions;
+import soullessberry.enchantmenteffects.particles.TrackingParticleOptions;
 
 import static soullessberry.enchantmenteffects.EnchantmentEffects.LOGGER;
 
@@ -33,6 +35,14 @@ public class EffectHandler {
         attemptKnockback(weapon, target);
         attemptSharpness(weapon, target);
         attemptSmite(weapon, target);
+    }
+
+    public static void applyThornsEffect(Entity target, @Nullable Entity attacker) {
+        float targetOffset = target.getDimensions(target.getPose()).height() / 2;
+        spawnThornsParticle(target.level(), target.position().add(0, targetOffset, 0));
+        if (attacker != null) {
+            spawnThornRingParticle(attacker);
+        }
     }
 
     private static void attemptBaneOfArthropods(ItemInstance weapon, Entity target) {
@@ -201,5 +211,19 @@ public class EffectHandler {
 
     private static void spawnSlashParticle(Level level, Vec3 pos, float scale) {
         level.addParticle(new ScalableParticleOptions(EnchantmentEffects.SLASH_PARTICLE, scale), true, true, pos.x, pos.y, pos.z, 0, 0, 0);
+    }
+
+    private static void spawnThornsParticle(Level level, Vec3 pos) {
+        level.addParticle(new ScalableParticleOptions(EnchantmentEffects.THORNS_PARTICLE, .25f), true, true, pos.x, pos.y, pos.z, 0, 0, 0);
+    }
+
+    private static void spawnThornRingParticle(Entity target) {
+        float offset = target.getDimensions(target.getPose()).height() / 2;
+        target.level().addParticle(
+                new TrackingParticleOptions(EnchantmentEffects.THORN_RING_PARTICLE, 1, target.getId()),
+                true, true,
+                target.getX(), target.getY() + offset, target.getZ(),
+                0, 0, 0
+        );
     }
 }

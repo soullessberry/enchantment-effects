@@ -26,6 +26,10 @@ public class ClientPacketListenerMixin {
             EffectHandler.applyWeaponEffects(attacker.getWeaponItem(), target);
         }
 
+        if (target != null && source.is(DamageTypes.THORNS)) {
+            EffectHandler.applyThornsEffect(target, source.getEntity());
+        }
+
         original.call(target, source);
     }
 }
