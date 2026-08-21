@@ -4,9 +4,10 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.SimpleAnimatedParticle;
 import net.minecraft.client.particle.SpriteSet;
 import org.jspecify.annotations.NonNull;
+import soullessberry.enchantmenteffects.api.ScaleProvider;
 
 public class AbstractScalableParticle extends SimpleAnimatedParticle {
-    public <T extends ScalableParticleOptions> AbstractScalableParticle(
+    public <T extends ScaleProvider> AbstractScalableParticle(
             ClientLevel level,
             double x, double y, double z,
             double xa, double ya, double za,

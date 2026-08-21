@@ -8,8 +8,9 @@ import net.minecraft.core.particles.ParticleType;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import org.jspecify.annotations.NonNull;
+import soullessberry.enchantmenteffects.api.ScaleProvider;
 
-public class ScalableParticleOptions implements ParticleOptions {
+public class ScalableParticleOptions implements ParticleOptions, ScaleProvider {
     private final ParticleType<ScalableParticleOptions> type;
     private final float scale;
 

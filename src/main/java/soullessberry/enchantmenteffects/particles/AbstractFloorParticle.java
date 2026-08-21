@@ -6,13 +6,14 @@ import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.state.level.QuadParticleRenderState;
 import org.joml.Quaternionf;
 import org.jspecify.annotations.NonNull;
+import soullessberry.enchantmenteffects.api.ScaleProvider;
 
 public class AbstractFloorParticle extends AbstractScalableParticle {
 
     private static final float NINETY_DEGREES = (float) Math.toRadians(-90f);
     private boolean mirrored = false;
 
-    public <T extends ScalableParticleOptions> AbstractFloorParticle(
+    public <T extends ScaleProvider> AbstractFloorParticle(
             ClientLevel level,
             double x, double y, double z,
             double xa, double ya, double za,

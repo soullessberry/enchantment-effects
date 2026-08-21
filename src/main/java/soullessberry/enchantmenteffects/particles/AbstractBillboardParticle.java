@@ -8,12 +8,13 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Quaternionf;
 import org.jspecify.annotations.NonNull;
+import soullessberry.enchantmenteffects.api.ScaleProvider;
 
 public class AbstractBillboardParticle extends AbstractScalableParticle {
 
     protected float dist;
 
-    public <T extends ScalableParticleOptions> AbstractBillboardParticle(
+    public <T extends ScaleProvider> AbstractBillboardParticle(
             ClientLevel level,
             double x, double y, double z,
             double xa, double ya, double za,
