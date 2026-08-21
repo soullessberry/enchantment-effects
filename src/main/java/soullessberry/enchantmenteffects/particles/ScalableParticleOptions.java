@@ -34,8 +34,4 @@ public class ScalableParticleOptions implements ParticleOptions {
     public float getScale() {
         return this.scale;
     }
-
-    public static ScalableParticleOptions create(final ParticleType<ScalableParticleOptions> type, final float scale) {
-        return new ScalableParticleOptions(type, scale);
-    }
 }
