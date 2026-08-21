@@ -1,15 +1,21 @@
 package soullessberry.enchantmenteffects;
 
+import com.mojang.serialization.MapCodec;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.core.Registry;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import soullessberry.enchantmenteffects.particles.ScalableParticleOptions;
+import soullessberry.enchantmenteffects.particles.TrackingParticleOptions;
+import java.util.function.Function;
 
 public class EnchantmentEffects implements ModInitializer {
 	public static final String MOD_ID = "enchantment-effects";
@@ -30,12 +36,24 @@ public class EnchantmentEffects implements ModInitializer {
 
 	}
 
-	private static ParticleType<ScalableParticleOptions> registerScalableParticle(String name) {
+	private static <T extends ParticleOptions> ParticleType<T> registerParticle(
+			String name,
+			Function<ParticleType<T>, MapCodec<T>> codecGetter,
+			Function<ParticleType<T>, StreamCodec<? super RegistryFriendlyByteBuf, T>> streamCodecGetter
+	) {
 		return Registry.register(
 				BuiltInRegistries.PARTICLE_TYPE,
 				id(name),
-				FabricParticleTypes.complex(ScalableParticleOptions::codec, ScalableParticleOptions::streamCodec)
+				FabricParticleTypes.complex(codecGetter, streamCodecGetter)
 		);
+	}
+
+	private static ParticleType<ScalableParticleOptions> registerScalableParticle(String name) {
+		return registerParticle(name, ScalableParticleOptions::codec, ScalableParticleOptions::streamCodec);
+	}
+
+	private static ParticleType<TrackingParticleOptions> registerTrackingParticle(String name) {
+		return registerParticle(name, TrackingParticleOptions::codec, TrackingParticleOptions::streamCodec);
 	}
 
 	private static SoundEvent registerSound(String name) {
