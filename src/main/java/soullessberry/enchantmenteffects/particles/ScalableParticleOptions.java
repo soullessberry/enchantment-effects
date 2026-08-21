@@ -14,11 +14,11 @@ public class ScalableParticleOptions implements ParticleOptions {
     private final float scale;
 
     public static MapCodec<ScalableParticleOptions> codec(final ParticleType<ScalableParticleOptions> type) {
-        return Codec.FLOAT.xmap(scale -> new ScalableParticleOptions(type, scale), o -> o.scale).optionalFieldOf("scale", create(type, 1.0F));
+        return Codec.FLOAT.xmap(scale -> new ScalableParticleOptions(type, scale), o -> o.scale).fieldOf("scale");
     }
 
     public static StreamCodec<? super ByteBuf, ScalableParticleOptions> streamCodec(final ParticleType<ScalableParticleOptions> type) {
-        return ByteBufCodecs.FLOAT.map(color -> new ScalableParticleOptions(type, color), o -> o.scale);
+        return ByteBufCodecs.FLOAT.map(scale -> new ScalableParticleOptions(type, scale), o -> o.scale);
     }
 
     public ScalableParticleOptions(final ParticleType<ScalableParticleOptions> type, final float scale) {
