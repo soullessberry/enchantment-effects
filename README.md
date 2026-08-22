@@ -2,26 +2,19 @@
 
 ### Because enchantments didn't feel special enough.
 
-Enchantment Effects is a small client-side mod that makes enchantments feel more powerful by adding sounds and particle effects. After grinding out for max enchantments I realized my sword didn't _feel_ any more powerful, so this mod attempts to fix that!
+Enchantment Effects is a client-side mod that makes enchantments feel more powerful by adding sounds and particle effects that scale with enchantment level. After grinding out for max enchantments I realized my weapons and armor didn't _feel_ any more powerful, so this mod fixes that!
 
-## Sharpness
-The sharpness enchantment will now do a magic slash on the target! Slash size scales with sharpness level. 
+## Enchantments:
 
-## Smite
-The smite enchantment now summons a holy beam of light! Beam size scales with smite level.
-
-## Bane of Arthropods
-The bane of arthropods enchantment now banishes the bug into nonexistence! Banish size scales with bane of arthropods level.
-
-## Fire Aspect
-The fire aspect enchantment now ignites your target with a ring of fire! Number of rings increases with fire aspect level.
-
-## Planned Enchantments:
-- Smite (Done)
-- Sharpness (Done)
-- Bane of Arthropods (Done)
-- Fire Aspect (Done)
+- Sharpness
+- Smite
+- Bane of Arthropods
+- Fire Aspect
 - Knockback
 - Thorns
-- Possibly Bow Enchantments
-- Enchantment combinations (e.g. sharpness + fire aspect)
+
+## Planned Features:
+- Bow enchantments
+- Trident enchantments
+- Mace enchantments
+- Enchantment synergies (e.g. smite + fire aspect = fiery smite)
