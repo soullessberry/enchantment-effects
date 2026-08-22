@@ -14,6 +14,7 @@ import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -218,9 +219,11 @@ public class EffectHandler {
     }
 
     private static void spawnThornRingParticle(Entity target) {
-        float offset = target.getDimensions(target.getPose()).height() / 2;
+        EntityDimensions dimensions = target.getDimensions(target.getPose());
+        float offset = dimensions.height() / 2;
+        float scale = Math.max(dimensions.width(), 0) + 0.4f;
         target.level().addParticle(
-                new TrackingParticleOptions(EnchantmentEffects.THORN_RING_PARTICLE, 1, target.getId()),
+                new TrackingParticleOptions(EnchantmentEffects.THORN_RING_PARTICLE, scale, target.getId()),
                 true, true,
                 target.getX(), target.getY() + offset, target.getZ(),
                 0, 0, 0
