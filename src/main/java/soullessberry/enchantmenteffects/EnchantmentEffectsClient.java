@@ -2,7 +2,6 @@ package soullessberry.enchantmenteffects;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import soullessberry.enchantmenteffects.particles.*;
@@ -20,7 +19,7 @@ public class EnchantmentEffectsClient implements ClientModInitializer {
 
     private static <T extends ParticleOptions> void registerParticle(
             ParticleType<T> type,
-            ParticleFactoryRegistry.PendingParticleProvider<T> provider
+            ParticleFactoryRegistry.PendingParticleFactory<T> provider
     ) {
         ParticleFactoryRegistry.getInstance().register(type, provider);
     }
